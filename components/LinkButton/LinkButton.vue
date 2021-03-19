@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="link">
     <el-button type="primary">
-      {{buttonText}}
+      {{ buttonText }}
     </el-button>
   </NuxtLink>
 </template>
@@ -14,5 +14,4 @@
 </script>
 
 <style scoped>
-
 </style>

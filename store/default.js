@@ -14,7 +14,7 @@ export const mutations = {
     const gameId = state.gameInfo.game.teseraId
 
     if (gameId in state.comments) {
-      state.comments[gameId].comments = { ...state.comments[gameId].comments }
+      state.comments[gameId].comments = [...state.comments[gameId].comments]
     } else {
       state.comments[gameId] = {
         gameId,

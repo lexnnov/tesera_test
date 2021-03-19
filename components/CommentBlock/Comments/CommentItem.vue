@@ -1,9 +1,7 @@
 <template>
-  <el-col :span="24">
-    <li>
-      <p>{{comment.comment}}</p>
-    </li>
-  </el-col>
+  <li class="comment_item">
+    {{ comment.comment }}
+  </li>
 </template>
 
 <script>
@@ -16,9 +14,8 @@
   }
 </script>
 
-<style scoped>
-  li {
+<style lang="scss" scoped>
+  .comment_item {
     margin: 10px 0;
   }
-
 </style>

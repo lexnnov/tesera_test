@@ -1,18 +1,17 @@
 <template>
-  <div class="paginator">
-    <el-pagination
-      :page-size="5"
-      background
-      layout="prev, pager, next"
-      :total="100"
-      @current-change="(el)=>current(el)"
-    />
-  </div>
+  <el-pagination
+    class="pagination"
+    :page-size="5"
+    background
+    layout="prev, pager, next"
+    :total="100"
+    @current-change="(el)=>current(el)"
+  />
 </template>
 
 <script>
   export default {
-    name: 'Paginator',
+    name: 'Pagination',
     methods: {
       current (page) {
         this.$emit('changePage', page)
@@ -21,9 +20,9 @@
   }
 </script>
 
-<style  scoped>
+<style lang="scss" scoped>
 
-  .paginator {
+  .pagination {
     display: flex;
     justify-content: center;
     align-items: center;

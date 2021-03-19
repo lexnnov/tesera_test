@@ -1,11 +1,11 @@
 <template>
   <el-container>
-    <Header/>
-    <Nuxt/>
+    <Header />
+    <Nuxt />
   </el-container>
 </template>
 
-<style>
+<style lang="scss">
   html {
     font-family: 'Source Sans Pro',
     -apple-system,
@@ -38,6 +38,12 @@
     flex-basis: auto;
     box-sizing: border-box;
     min-width: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 
 </style>

@@ -4,7 +4,7 @@
       Добавить комментарий
     </el-button>
     <el-row v-if="comments">
-      <ul>
+      <ul class="comments_list">
         <comment-item v-for="comment of comments" :key="comment.id" :comment="comment"/>
       </ul>
     </el-row>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import { generateLiteId } from '../../helpers'
   import CommentItem from './Comments/CommentItem'
 
   export default {
@@ -20,16 +21,14 @@
     props: ['comments', 'gameId'],
     methods: {
       open () {
-        this.$prompt('ведите комментарий', {
+        this.$prompt('Введите комментарий', {
           confirmButtonText: 'Добавить',
           cancelButtonText: 'Отмена'
         }).then((obj) => {
-          const today = new Date()
-          const milliseconds = today.getMilliseconds()
-          this.$store.commit('comments/ADD_COMMENT', {
+          this.$store.commit('default/ADD_COMMENT', {
             gameId: this.gameId,
             comment: {
-              id: milliseconds,
+              id: generateLiteId(),
               comment: obj.value,
               time: new Date()
             }
@@ -39,7 +38,6 @@
             message: 'Комментарий добавлен'
           })
         }).catch((er) => {
-          console.log(er)
           this.$message({
             type: 'info',
             message: 'Отмена'
@@ -50,9 +48,9 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-  ul {
+  .comments_list {
     margin: 0;
     padding: 0;
     list-style: none;

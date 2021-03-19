@@ -19,8 +19,8 @@
 </template>
 
 <script>
-  import LinkButton from '../components/LinkButton/LinkButton'
-  import CommentBlock from '../components/CommentBlock/CommentBlock'
+  import LinkButton from '../../components/LinkButton/LinkButton'
+  import CommentBlock from '../../components/CommentBlock/CommentBlock'
 
   export default {
     components: {
@@ -35,20 +35,20 @@
     computed: {
       comments () {
         if (this.dataLded) {
-          return this.$store.state.comments.comments[this.$store.state.comments.gameInfo.game.teseraId].comments
+          return this.$store.state.default.comments[this.$store.state.default.gameInfo.game.teseraId].comments
         } else {
           return []
         }
       },
       gameInformation () {
-        return this.$store.state.comments.gameInfo.game
+        return this.$store.state.default.gameInfo.game
       },
       dataLded () {
-        return this.$store.state.comments.fullyLoaded
+        return this.$store.state.default.fullyLoaded
       }
     },
     created () {
-      this.$store.dispatch('default.js/getGame', { self: this.$route.params.id })
+      this.$store.dispatch('default/getGame', { self: this.$route.params.id })
     }
   }
 
