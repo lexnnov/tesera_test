@@ -1,7 +1,7 @@
 <template>
   <el-main>
     <paginator :current-page="currentPage" :pages="pagesCount" @changePage="changePage"/>
-    <card v-for="(game, id) of games" :key="game.teseraId" :index="id" :gamedata="game"/>
+    <card v-for="game of games" :key="game.teseraId" :gamedata="game"/>
   </el-main>
 </template>
 

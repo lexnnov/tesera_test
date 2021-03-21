@@ -25,7 +25,7 @@ export default {
 
   generate: {
     routes () {
-      return getTeseraGames('https://api.tesera.ru/games', 30).then((res) => {
+      return getTeseraGames('https://api.tesera.ru/games', 1000).then((res) => {
         return res.flat().map((game) => {
           return '/game/' + game.alias
         })
