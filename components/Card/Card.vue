@@ -7,9 +7,10 @@
       <el-col :span="21" style="padding: 14px;">
 
         <div class="game-card_title">
-          <NuxtLink :to="'/game/'+gamedata.alias">
+          <NuxtLink v-if="gamedata.alias" :to="'/game/'+ gamedata.alias">
             <h1>{{ gamedata.title }}</h1>
           </NuxtLink>
+          <h1 v-else>{{ gamedata.title }}</h1>
         </div>
 
         <div class="game-card_description">

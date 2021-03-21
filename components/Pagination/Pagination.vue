@@ -1,10 +1,11 @@
 <template>
   <el-pagination
+    v-if="pages"
     class="pagination"
-    :page-size="5"
     background
     layout="prev, pager, next"
-    :total="100"
+    :page-count="pages-1"
+    :current-page="currentPage"
     @current-change="(el)=>current(el)"
   />
 </template>
@@ -12,6 +13,7 @@
 <script>
   export default {
     name: 'Pagination',
+    props: ['pages', 'currentPage'],
     methods: {
       current (page) {
         this.$emit('changePage', page)

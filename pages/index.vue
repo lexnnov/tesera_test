@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <paginator @changePage="changePage"/>
+    <paginator :current-page="currentPage" :pages="pagesCount" @changePage="changePage"/>
     <card v-for="(game, id) of games" :key="game.teseraId" :index="id" :gamedata="game"/>
   </el-main>
 </template>
@@ -10,22 +10,36 @@
   import Paginator from '../components/Pagination/Pagination'
 
   export default {
-    components: { Card, Paginator },
+    components: {
+      Card,
+      Paginator
+    },
     data () {
       return {
-        games: []
+        games: [],
+        pagesCount: 0,
+        pageLimit: 10
       }
     },
-    async created () {
-      this.games = await fetch(
-      'https://api.tesera.ru/games?Limit=10'
-      ).then(res => res.json())
+    async fetch () {
+      await fetch(
+        `https://api.tesera.ru/games?Limit=${this.pageLimit}&Offset=${this.currentPage}`
+      ).then((res) => {
+        this.pagesCount = parseInt(res.headers.get('x-total-pages'))
+        return res.json()
+      }).then((res) => {
+        this.games = res
+      })
+    },
+    computed: {
+      currentPage () {
+          return this.$store.state.default.currentPage
+      }
     },
     methods: {
-      async changePage (el) {
-        this.games = await fetch(
-        `https://api.tesera.ru/games?Limit=10&Offset=${el * 10}`
-        ).then(res => res.json())
+      changePage (pageNumber) {
+        this.$store.dispatch('default/setCurrentPage', pageNumber)
+        this.$fetch()
       }
     }
   }

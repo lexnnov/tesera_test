@@ -5,7 +5,7 @@
     </el-button>
     <el-row v-if="comments">
       <ul class="comments_list">
-        <comment-item v-for="comment of comments" :key="comment.id" :comment="comment"/>
+        <comment-item v-for="comment of comments" :key="comment.id" :comment="comment" />
       </ul>
     </el-row>
   </el-row>
@@ -49,6 +49,12 @@
 </script>
 
 <style lang="scss" scoped>
+
+  .comments {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #d2d2d2;
+  }
 
   .comments_list {
     margin: 0;

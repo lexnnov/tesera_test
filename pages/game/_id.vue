@@ -1,14 +1,14 @@
 <template>
-  <el-container class="game-information">
+  <el-container v-if="dataLded" class="game-information">
     <link-button class="game-information_back-button" link="/" button-text="К списку игр"/>
-    <el-main v-if="gameInformation">
+    <el-main>
       <el-row class="game-information_main">
         <el-col class="game-information_left" :span="6">
           <div class="grid-content bg-purple">
             <el-image class="game-card_image" :src="gameInformation.photoUrl"/>
           </div>
         </el-col>
-        <el-col class="game-information_right" v-if="gameInformation" :span="18">
+        <el-col class="game-information_right" :span="18">
           <div class="game-information_title">{{ gameInformation.title }}</div>
           <div class="game-information_description" v-html="gameInformation.description"/>
         </el-col>
@@ -35,7 +35,7 @@
     computed: {
       comments () {
         if (this.dataLded) {
-          return this.$store.state.default.comments[this.$store.state.default.gameInfo.game.teseraId].comments
+          return this.$store.state.default.comments[this.gameInformation.teseraId].comments
         } else {
           return []
         }
@@ -55,17 +55,6 @@
 </script>
 
 <style lang="scss">
-  .header {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .comments {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px solid #d2d2d2;
-  }
 
   .game-information {
     &_back-button {

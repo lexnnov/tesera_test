@@ -1,3 +1,5 @@
+import { getTeseraGames } from './helpers'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -20,6 +22,16 @@ export default {
   css: [
     'element-ui/lib/theme-chalk/index.css'
   ],
+
+  generate: {
+    routes () {
+      return getTeseraGames('https://api.tesera.ru/games', 30).then((res) => {
+        return res.flat().map((game) => {
+          return '/game/' + game.alias
+        })
+      })
+    }
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [

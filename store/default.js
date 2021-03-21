@@ -1,7 +1,8 @@
 export const state = () => ({
   comments: {},
   gameInfo: '',
-  fullyLoaded: false
+  fullyLoaded: false,
+  currentPage: 0
 })
 
 export const mutations = {
@@ -28,8 +29,11 @@ export const mutations = {
   SET_GAME_LOADED_STATE (state, text) {
     state.fullyLoaded = text
   },
-  CLEAR_LAST_GAME_INFO (state) {
+  CLEAR_LAST_GAME_INFO () {
     state.gameInfo = ''
+  },
+  SET_CURRENT_PAGE (state, page) {
+    state.currentPage = page
   }
 }
 
@@ -52,5 +56,9 @@ export const actions = {
     ).then(() => {
       commit('SET_GAME_LOADED_STATE', true)
     })
+  },
+
+  setCurrentPage ({ commit }, pageNumber) {
+    commit('SET_CURRENT_PAGE', pageNumber)
   }
 }
